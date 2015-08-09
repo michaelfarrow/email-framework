@@ -1,0 +1,4 @@
+buildtools:
+  image: weyforth/email-buildtools
+  volumes:
+    - "./:/data"

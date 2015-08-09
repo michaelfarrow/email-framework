@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source tools/_functions
+
+set -e
+
+heading "Linking npm tools"
+tools/build_link
+
+heading "Gulping"
+tools/gulp

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+[ -t 1 ] || params="-T"
+
+docker-compose run $params --rm "$@"
