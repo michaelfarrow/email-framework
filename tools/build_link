@@ -7,3 +7,5 @@ tools/npm link gulp-zip
 tools/npm link gulp-inline-css
 tools/npm link gulp-inline
 tools/npm link gulp-minify-css
+tools/npm link gulp-htmllint
+tools/npm link gulp-csslint

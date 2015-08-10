@@ -1,0 +1,11 @@
+{
+	"doctype-html5": false,
+	"tag-bans": false,
+	"attr-bans": false,
+	"img-req-alt": false,
+	"indent-style": false,
+	"indent-width": false,
+	"attr-name-style": false,
+	"id-class-style": false,
+	"tag-name-match": true
+}
