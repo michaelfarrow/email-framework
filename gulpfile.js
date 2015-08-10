@@ -39,8 +39,10 @@ gulp.task('compile', ['htmllint', 'csslint'], function () {
 
 gulp.task('zip', ['copy', 'compile'], function () {
 	return gulp.src([
-			'build/*',
-			'!build/build.zip'
+			'build/**/*',
+			'!build/build.zip',
+			'!build/build/**/*',
+			'!build/build/'
 		], { base_dir: 'build' })
 		.pipe(zip('build.zip'))
 		.pipe(gulp.dest('build'));
