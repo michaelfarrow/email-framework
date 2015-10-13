@@ -7,5 +7,6 @@
 	"indent-width": false,
 	"attr-name-style": false,
 	"id-class-style": false,
-	"tag-name-match": true
+	"tag-name-match": true,
+	"attr-req-value": false
 }

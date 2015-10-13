@@ -4,8 +4,24 @@ source tools/_functions
 
 set -e
 
+build_env="local"
+
+if [[ "$1" != "" ]];
+	then
+	build_env="$1"
+fi
+
+npm_args=""
+
+if [[ "$build_env" != "local" ]]; then
+	npm_args="--silent"
+fi
+
 heading "Linking npm tools"
 tools/build_link
+
+heading "Installing NPM dependencies"
+tools/npm install $npm_args
 
 heading "Gulping"
 tools/gulp
