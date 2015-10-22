@@ -1,19 +1,24 @@
 
 var gulp      = require('gulp'),
-    inline    = require('gulp-inline'),
-    inlineCss = require('gulp-inline-css')
-    zip       = require('gulp-zip'),
-    minify    = require('gulp-minify-css'),
-    htmllint  = require('gulp-htmllint'),
-    csslint   = require('gulp-csslint');
+	inline    = require('gulp-inline'),
+	inlineCss = require('gulp-inline-css')
+	zip       = require('gulp-zip'),
+	minify    = require('gulp-minify-css'),
+	htmllint  = require('gulp-htmllint'),
+	csslint   = require('gulp-csslint'),
+	compass   = require('gulp-compass');
 
+
+function handleError(err) {
+	this.emit('end');
+}
 
 gulp.task('htmllint', function () {
 	return gulp.src('src/email.html')
 		.pipe(htmllint('.htmllintrc'));
 });
 
-gulp.task('csslint', function () {
+gulp.task('csslint', ['compile-compass'], function () {
 	return gulp.src('src/style.css')
 		.pipe(csslint('.csslintrc'))
 		.pipe(csslint.reporter());
@@ -24,15 +29,35 @@ gulp.task('copy', function () {
 		.pipe(gulp.dest('build/images'));
 });
 
+gulp.task('compile-compass', function() {
+	return gulp.src('src/*.scss')
+		.pipe(compass({
+			css: 'src',
+			sass: 'src',
+			image: 'src'
+		}))
+		.on('error', handleError);
+});
+
 gulp.task('compile', ['htmllint', 'csslint'], function () {
 	return gulp.src('src/email.html')
 		.pipe(inline({
+			css: minify,
 			base: 'src/',
-			css: minify(),
-			disabledTypes: ['svg', 'img', 'js']
+			disabledTypes: ['svg', 'img', 'js'],
+			ignore: ['editable.css']
 		}))
 		.pipe(inlineCss({
-			removeStyleTags: false
+			removeLinkTags: false,
+			removeStyleTags: false,
+			applyStyleTags: true,
+			applyLinkTags: false
+		}))
+		.pipe(inline({
+			css: minify,
+			base: 'src/',
+			disabledTypes: ['svg', 'img', 'js'],
+			ignore: ['main.css']
 		}))
 		.pipe(gulp.dest('build/'));
 });
@@ -51,6 +76,7 @@ gulp.task('zip', ['copy', 'compile'], function () {
 gulp.task('watch', function() {
 	gulp.watch('src/*.html', ['htmllint']);
 	gulp.watch('src/*.css', ['csslint']);
+	gulp.watch('src/*.scss', ['compile-compass']);
 });
 
 gulp.task('build', [
