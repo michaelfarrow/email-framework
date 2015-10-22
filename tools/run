@@ -4,4 +4,4 @@ set -e
 
 [ -t 1 ] || params="-T"
 
-docker run $params --rm -v "$PWD:/data" -t weyforth/email-buildtools "$@"
+docker run $params --rm -v "$PWD:/data" -t weyforth/email-buildtools:1.0 "$@"

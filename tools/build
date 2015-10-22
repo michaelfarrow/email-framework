@@ -17,9 +17,6 @@ if [[ "$build_env" != "local" ]]; then
 	npm_args="--silent"
 fi
 
-heading "Linking npm tools"
-tools/build_link
-
 heading "Installing NPM dependencies"
 tools/npm install $npm_args
 
