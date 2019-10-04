@@ -1,0 +1,10 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - gulp-inline-css > inline-css > extract-css > href-content > remote-content > superagent-proxy > proxy-agent > https-proxy-agent:
+        patched: '2019-10-04T05:48:19.003Z'
+    - gulp-inline-css > inline-css > extract-css > href-content > remote-content > superagent-proxy > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-04T05:48:19.003Z'
