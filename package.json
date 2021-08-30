@@ -8,6 +8,12 @@
     "gulp-minify-css": "1.2.1",
     "gulp-htmllint": "0.0.6",
     "gulp-csslint": "0.2.0",
-    "gulp-compass": "2.1.0"
-  }
+    "gulp-compass": "2.1.0",
+    "@snyk/protect": "latest"
+  },
+  "scripts": {
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
+  },
+  "snyk": true
 }
